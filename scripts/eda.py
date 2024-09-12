@@ -58,4 +58,11 @@ def plot_geographic_trend(df, x_col, y_col, hue=None):
     plt.title(f"Trend of {y_col} over {x_col}")
     plt.show()
 
-    
+# Outlier Detection
+
+def box_plot(df, columns):
+    """Plot boxplots for outlier detection in numerical data"""
+    df[columns].plot(kind='box', subplots=True, layout=(len(columns)//4, 4), figsize=(15, 10))
+    plt.tight_layout()
+    plt.show()
+
