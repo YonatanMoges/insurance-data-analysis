@@ -1,5 +1,6 @@
 
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 # Data Summarization
 
@@ -33,3 +34,18 @@ def plot_categorical_bar(df, columns):
         plt.ylabel('Frequency')
         plt.xlabel(column)
         plt.show()
+
+# Bivariate Analysis
+
+def plot_scatter(df, x_col, y_col, hue=None):
+    """Scatter plot for bivariate analysis"""
+    sns.scatterplot(data=df, x=x_col, y=y_col, hue=hue)
+    plt.title(f"Scatter plot of {x_col} vs {y_col}")
+    plt.show()
+
+def correlation_matrix(df, columns):
+    """Generate correlation matrix and plot heatmap"""
+    corr = df[columns].corr()
+    sns.heatmap(corr, annot=True, cmap='coolwarm', vmin=-1, vmax=1)
+    plt.title('Correlation Matrix')
+    plt.show()
