@@ -49,3 +49,13 @@ def correlation_matrix(df, columns):
     sns.heatmap(corr, annot=True, cmap='coolwarm', vmin=-1, vmax=1)
     plt.title('Correlation Matrix')
     plt.show()
+
+# Data Comparison Over Geography
+
+def plot_geographic_trend(df, x_col, y_col, hue=None):
+    """Plot trends over geography"""
+    sns.lineplot(data=df, x=x_col, y=y_col, hue=hue)
+    plt.title(f"Trend of {y_col} over {x_col}")
+    plt.show()
+
+    
