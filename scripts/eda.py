@@ -35,12 +35,14 @@ def plot_categorical_bar(df, columns):
         plt.xlabel(column)
         plt.show()
 
-# Bivariate Analysis
+# Bivariate Analysis as a function of zipcode
 
-def plot_scatter(df, x_col, y_col, hue=None):
-    """Scatter plot for bivariate analysis"""
-    sns.scatterplot(data=df, x=x_col, y=y_col, hue=hue)
-    plt.title(f"Scatter plot of {x_col} vs {y_col}")
+def plot_scatter_by_zipcode(df, x_col, y_col, zipcode_col):
+    """Scatter plot of TotalPremium vs TotalClaims as a function of ZipCode"""
+    plt.figure(figsize=(10, 6))
+    sns.scatterplot(data=df, x=x_col, y=y_col, hue=zipcode_col, palette='coolwarm')
+    plt.title(f"Scatter plot of {x_col} vs {y_col} by {zipcode_col}")
+    plt.legend(title=zipcode_col, bbox_to_anchor=(1.05, 1), loc='upper left')
     plt.show()
 
 def correlation_matrix(df, columns):
@@ -52,10 +54,14 @@ def correlation_matrix(df, columns):
 
 # Data Comparison Over Geography
 
-def plot_geographic_trend(df, x_col, y_col, hue=None):
-    """Plot trends over geography"""
-    sns.lineplot(data=df, x=x_col, y=y_col, hue=hue)
-    plt.title(f"Trend of {y_col} over {x_col}")
+def plot_trend_over_geography(df, x_col, y_col, hue, geography_col):
+    """Plot trends over geography, comparing different features"""
+    plt.figure(figsize=(10, 6))
+    sns.lineplot(data=df, x=x_col, y=y_col, hue=hue, ci=None)
+    plt.title(f"Trend of {y_col} by {hue} over {x_col}")
+    plt.xlabel(geography_col)
+    plt.ylabel(y_col)
+    plt.legend(title=hue, bbox_to_anchor=(1.05, 1), loc='upper left')
     plt.show()
 
 # Outlier Detection
@@ -65,4 +71,44 @@ def box_plot(df, columns):
     df[columns].plot(kind='box', subplots=True, layout=(len(columns)//4, 4), figsize=(15, 10))
     plt.tight_layout()
     plt.show()
+
+# Advanced Visualization
+
+# Heatmap of correlations for a subset of columns
+def plot_correlation_heatmap(df, subset_columns=None):
+    """Plot a correlation heatmap for a subset of numerical columns."""
+    if subset_columns is None:
+        subset_columns = ['TotalPremium', 'TotalClaims', 'SumInsured', 'CalculatedPremiumPerTerm']
+    
+    corr_matrix = df[subset_columns].corr()
+    plt.figure(figsize=(8, 6))
+    sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', vmin=-1, vmax=1, linewidths=0.5)
+    plt.title('Correlation Heatmap')
+    plt.tight_layout()
+    plt.show()
+
+# Violin plot for TotalPremium by VehicleType
+def plot_violin(df, x_col, y_col, hue=None):
+    """Violin plot to show distribution and data spread"""
+    plt.figure(figsize=(12, 6))
+    sns.violinplot(data=df, x=x_col, y=y_col, hue=hue)
+    plt.xticks(rotation=45)  # Rotate x-axis labels
+    plt.title(f"Violin plot of {y_col} by {x_col}")
+    plt.tight_layout()
+    plt.show()
+
+# Stacked Bar Plot of categorical columns
+def plot_stacked_bar(df, x_col, y_col, hue_col):
+    """Plot a stacked bar chart showing the distribution of a categorical variable across another."""
+    grouped_df = df.groupby([x_col, hue_col])[y_col].count().unstack().fillna(0)
+    
+    # Plot the stacked bar chart
+    grouped_df.plot(kind='bar', stacked=True, figsize=(12, 6), colormap='tab20')
+    plt.title(f"Stacked Bar Plot of {hue_col} across {x_col}")
+    plt.ylabel('Count')
+    plt.xticks(rotation=45)
+    plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left', borderaxespad=0.)
+    plt.tight_layout()
+    plt.show()
+
 
