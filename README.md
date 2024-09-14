@@ -1,30 +1,30 @@
-## Insurance Dataset Exploratory Data Analysis (EDA)
+# Insurance Dataset Exploratory Data Analysis (EDA)
 
-# Project Overview
+## Project Overview
 This project performs Exploratory Data Analysis (EDA) on an insurance dataset containing information about insurance policies, client details, car specifications, and payment/claim history. The aim is to uncover trends, relationships, and patterns that can help improve decision-making within the insurance industry.
 
-# Project Structure
+## Project Structure
 
-├── .vscode/
-│   └── settings.json
-├── .github/
-│   └── workflows
-│       ├── unittests.yml
-├── .gitignore
-├── requirements.txt
-├── README.md
-├── src/
-│   ├── __init__.py
-├── notebooks/
-│   ├── __init__.py
-    ├── eda.ipynb
-│   └── README.md
-├── tests/
-│   ├── __init__.py
-└── scripts/
-    ├── __init__.py
-    ├── eda.py
-    └── README.md
+├── .vscode/  
+│   └── settings.json  
+├── .github/  
+│   └── workflows  
+│       ├── unittests.yml  
+├── .gitignore  
+├── requirements.txt  
+├── README.md  
+├── src/  
+│   ├── __init__.py  
+├── notebooks/  
+│   ├── __init__.py  
+    ├── eda.ipynb  
+│   └── README.md  
+├── tests/  
+│   ├── __init__.py  
+└── scripts/  
+    ├── __init__.py  
+    ├── eda.py  
+    └── README.md  
 
 ## Dataset Description
 The dataset contains the following types of information:
@@ -38,24 +38,24 @@ Plan Information: SumInsured, TermFrequency, CalculatedPremiumPerTerm, ExcessSel
 Payment and Claims Information: TotalPremium, TotalClaims
 
 ## Features
-# Data Summarization: Descriptive statistics on numerical features such as TotalPremium, TotalClaims, etc.
-# Data Quality Assessment: Checks for missing values and proper formatting of categorical variables.
-# Univariate, Bivariate, and Multivariate Analysis: Visualizations of distributions and relationships between variables.
-# Outlier Detection: Box plots to detect outliers in numerical data.
-# Advanced Visualizations: Creative plots to highlight trends and relationships in the data.
+Data Summarization: Descriptive statistics on numerical features such as TotalPremium, TotalClaims, etc.  
+Data Quality Assessment: Checks for missing values and proper formatting of categorical variables.  
+Univariate, Bivariate, and Multivariate Analysis: Visualizations of distributions and relationships between variables.  
+Outlier Detection: Box plots to detect outliers in numerical data.  
+Advanced Visualizations: Creative plots to highlight trends and relationships in the data.  
 
-## Installation
-# Clone this repository:
+# Installation
+## Clone this repository:
 git clone https://github.com/your-repo/insurance-eda.git
 
-# Install the required dependencies:
+## Install the required dependencies:
 pip install -r requirements.txt
 
-## How to Run
-# Open and run the eda.ipynb notebook located in the notebooks/ directory. This will generate visualizations and perform analyses based on the provided dataset.
-# Open eda.py located in the scripts/ directory to take a look at the modular functions.
+# How to Run
+Open and run the eda.ipynb notebook located in the notebooks/ directory. This will generate visualizations and perform analyses based on the provided dataset.  
+Open eda.py located in the scripts/ directory to take a look at the modular functions.
 
 ## Prerequisites
 Python 3.9 and above, 
-# Libraries 
+## Libraries 
 pandas, numpy, seaborn, matplotlib
