@@ -30,7 +30,7 @@ Advanced Visualizations: Creative plots to highlight trends and relationships in
 
 # Installation
 ## Clone this repository:
-git clone https://github.com/your-repo/insurance-eda.git
+git clone https://github.com/YonatanMoges/insurance_data_analysis.git
 
 ## Install the required dependencies:
 pip install -r requirements.txt
@@ -40,6 +40,6 @@ Open and run the eda.ipynb notebook located in the notebooks/ directory. This wi
 Open eda.py located in the scripts/ directory to take a look at the modular functions.
 
 ## Prerequisites
-Python 3.9 and above, 
+Python 3.9 and above 
 ## Libraries 
 pandas, numpy, seaborn, matplotlib
