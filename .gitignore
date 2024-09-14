@@ -1,2 +1,7 @@
-data
+
 myenv
+# Ignore all files in 'data' directory
+data/*
+
+# But do not ignore .dvc files
+!data/*.dvc
