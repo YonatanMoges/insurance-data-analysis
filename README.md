@@ -6,19 +6,19 @@ This project performs Exploratory Data Analysis (EDA) on an insurance dataset co
 ## Project Structure
 
 ├── .vscode/  
-│   └── settings.json  
+    └── settings.json  
 ├── .github/  
-│   └── workflows  
-│       ├── unittests.yml  
+    └── workflows  
+        ├── unittests.yml  
 ├── .gitignore  
 ├── requirements.txt  
 ├── README.md  
 ├── src/  
-│   ├── __init__.py  
+    ├── __init__.py  
 ├── notebooks/  
-│   ├── __init__.py  
+    ├── __init__.py  
     ├── eda.ipynb  
-│   └── README.md  
+    └── README.md  
 ├── tests/  
 │   ├── __init__.py  
 └── scripts/  
