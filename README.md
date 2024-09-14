@@ -7,8 +7,7 @@ This project performs Exploratory Data Analysis (EDA) on an insurance dataset co
 
 ├── notebooks/eda.ipynb  
 ├── scripts/eda.py  
-├── README.md
-├── report.md
+├── README.md  
 └── data
 
 ## Dataset Description
