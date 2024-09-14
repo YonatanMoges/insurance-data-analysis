@@ -29,13 +29,13 @@ This project performs Exploratory Data Analysis (EDA) on an insurance dataset co
 ## Dataset Description
 The dataset contains the following types of information:
 
-# Insurance Policy Details: UnderwrittenCoverID, PolicyID
-# Transaction Information: TransactionMonth
-# Client Information: IsVATRegistered, Citizenship, LegalType, Title, Language, Bank, AccountType, MaritalStatus, Gender
-# Location Information: Country, Province, PostalCode, MainCrestaZone, SubCrestaZone
-# Car Specifications: ItemType, Mmcode, VehicleType, RegistrationYear, Make, Model, Cylinders, Cubiccapacity, Kilowatts, Bodytype, NumberOfDoors, VehicleIntroDate, CustomValueEstimate, AlarmImmobiliser, TrackingDevice, CapitalOutstanding, NewVehicle, WrittenOff, Rebuilt, Converted, CrossBorder, NumberOfVehiclesInFleet
-# Plan Information: SumInsured, TermFrequency, CalculatedPremiumPerTerm, ExcessSelected, CoverCategory, CoverType, CoverGroup, Section, Product, StatutoryClass, StatutoryRiskType
-# Payment and Claims Information: TotalPremium, TotalClaims
+Insurance Policy Details: UnderwrittenCoverID, PolicyID  
+Transaction Information: TransactionMonth  
+Client Information: IsVATRegistered, Citizenship, LegalType, Title, Language, Bank, AccountType, MaritalStatus, Gender  
+Location Information: Country, Province, PostalCode, MainCrestaZone, SubCrestaZone  
+Car Specifications: ItemType, Mmcode, VehicleType, RegistrationYear, Make, Model, Cylinders, Cubiccapacity, Kilowatts, Bodytype, NumberOfDoors, VehicleIntroDate, CustomValueEstimate, AlarmImmobiliser, TrackingDevice, CapitalOutstanding, NewVehicle, WrittenOff, Rebuilt, Converted, CrossBorder, NumberOfVehiclesInFleet  
+Plan Information: SumInsured, TermFrequency, CalculatedPremiumPerTerm, ExcessSelected, CoverCategory, CoverType, CoverGroup, Section, Product, StatutoryClass, StatutoryRiskType  
+Payment and Claims Information: TotalPremium, TotalClaims
 
 ## Features
 # Data Summarization: Descriptive statistics on numerical features such as TotalPremium, TotalClaims, etc.
