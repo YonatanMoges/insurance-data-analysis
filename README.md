@@ -5,26 +5,11 @@ This project performs Exploratory Data Analysis (EDA) on an insurance dataset co
 
 ## Project Structure
 
-├── .vscode/  
-    └── settings.json  
-├── .github/  
-    └── workflows  
-        ├── unittests.yml  
-├── .gitignore  
-├── requirements.txt  
-├── README.md  
-├── src/  
-    ├── __init__.py  
-├── notebooks/  
-    ├── __init__.py  
-    ├── eda.ipynb  
-    └── README.md  
-├── tests/  
-│   ├── __init__.py  
-└── scripts/  
-    ├── __init__.py  
-    ├── eda.py  
-    └── README.md  
+├── notebooks/eda.ipynb  
+├── scripts/eda.py  
+├── README.md
+├── report.md
+└── data
 
 ## Dataset Description
 The dataset contains the following types of information:
