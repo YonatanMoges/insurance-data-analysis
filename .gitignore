@@ -1,7 +1,10 @@
-
+data
 myenv
+dvc
+
+# For dvc to work: 
 # Ignore all files in 'data' directory
-data/*
+#data/*
 
 # But do not ignore .dvc files
-!data/*.dvc
+#!data/*.dvc
