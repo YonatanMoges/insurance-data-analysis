@@ -2,6 +2,7 @@ data
 myenv
 dvc
 
+
 # For dvc to work: 
 # Ignore all files in 'data' directory
 #data/*
