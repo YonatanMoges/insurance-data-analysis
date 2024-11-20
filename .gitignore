@@ -1,7 +1,7 @@
 data
 myenv
 dvc
-
+models
 
 # For dvc to work: 
 # Ignore all files in 'data' directory

@@ -6,42 +6,31 @@ from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestRegressor
 from xgboost import XGBRegressor
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
-from sklearn.compose import ColumnTransformer
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
-from sklearn.impute import SimpleImputer
+import joblib
+import time
 
 class ModelingPipeline:
     def __init__(self):
         self.scaler = StandardScaler()
         self.models = {
             'LinearRegression': LinearRegression(),
-            'RandomForest': RandomForestRegressor(n_estimators=100, random_state=42),
-            'XGBoost': XGBRegressor(n_estimators=100, random_state=42)
+            'RandomForest': RandomForestRegressor(n_estimators=100, random_state=42, n_jobs=-1),
+            'XGBoost': XGBRegressor(n_estimators=100, random_state=42, n_jobs=-1)
         }
 
-    # Data Preprocessing
+    # --- DATA PROCESSING FUNCTIONS ---
     def preprocess_data(self, X):
-        """
-        Preprocesses the input data by encoding categorical features.
-
-        Parameters:
-        X (pd.DataFrame): The data to preprocess.
-
-        Returns:
-        pd.DataFrame: Preprocessed data.
-        """
         for col in X.columns:
             if X[col].dtype == 'object':
                 X[col] = LabelEncoder().fit_transform(X[col].astype(str))
             elif X[col].apply(type).nunique() > 1:  # Mixed types
                 X[col] = X[col].astype(str).fillna("Unknown")
                 X[col] = LabelEncoder().fit_transform(X[col])
-
         X.fillna(0, inplace=True)  # Handle missing values
         return X
 
     def load_and_clean_data(self, filepath):
-        dtype_spec={32: 'object', 37:'object'}
+        dtype_spec = {32: 'object', 37: 'object'}
         data = pd.read_csv(filepath, dtype=dtype_spec)
         data = data.drop_duplicates(keep="first")
         return data
@@ -82,43 +71,19 @@ class ModelingPipeline:
         X_test[numeric_columns] = self.scaler.transform(X_test[numeric_columns])
         return X_train, X_test
 
-    # Training and Evaluation
+    # --- TRAINING AND EVALUATION ---
     def train_model(self, model_name, X_train, y_train):
-        """
-        Trains the specified model on the provided training data.
-
-        Parameters:
-        model_name (str): Name of the model to train.
-        X_train (pd.DataFrame): Features for training.
-        y_train (pd.Series or np.array): Target variable.
-
-        Returns:
-        sklearn model: Trained model instance.
-        """
-        # Preprocess X_train
         X_train = self.preprocess_data(X_train)
-
-        # Train model
         model = self.models[model_name]
+        start_time = time.time()
         model.fit(X_train, y_train)
+        print(f"Model {model_name} trained in {time.time() - start_time:.2f} seconds.")
         return model
-    
+
     def predict_model(self, model, X_test):
-        """
-        Predicts using the trained model and preprocessed test data.
-
-        Parameters:
-        model (sklearn model): Trained model.
-        X_test (pd.DataFrame): Features for prediction.
-
-        Returns:
-        np.array: Predictions.
-        """
-        # Preprocess X_test
         X_test = self.preprocess_data(X_test)
         return model.predict(X_test)
-        
-        
+
     def evaluate_model(self, y_true, y_pred):
         return {
             'MSE': mean_squared_error(y_true, y_pred),
@@ -126,16 +91,15 @@ class ModelingPipeline:
             'R2': r2_score(y_true, y_pred)
         }
 
-    # Visualization and Display
-    def plot_feature_importance(self, model, feature_names):
+    # --- VISUALIZATION AND DISPLAY ---
+    def plot_feature_importance(self, model, feature_names, top_n=10):
         if hasattr(model, 'feature_importances_'):
             importances = model.feature_importances_
-            indices = np.argsort(importances)[::-1]
-
-            plt.figure(figsize=(10, 6))
-            plt.title("Feature Importance")
-            plt.bar(range(len(feature_names)), importances[indices], align="center")
-            plt.xticks(range(len(feature_names)), np.array(feature_names)[indices], rotation=90)
+            indices = np.argsort(importances)[-top_n:]
+            plt.figure(figsize=(8, 6))
+            plt.barh(np.array(feature_names)[indices], importances[indices], color="skyblue")
+            plt.title(f"Top {top_n} Feature Importances")
+            plt.xlabel("Importance Score")
             plt.tight_layout()
             plt.show()
         else:
@@ -147,3 +111,13 @@ class ModelingPipeline:
             print(f"\n{model_name}:")
             for metric, value in metrics.items():
                 print(f"  {metric}: {value:.4f}")
+
+    # --- MODEL PERSISTENCE ---
+    def save_model(self, model, filepath):
+        joblib.dump(model, filepath)
+        print(f"Model saved to {filepath}.")
+
+    def load_model(self, filepath):
+        model = joblib.load(filepath)
+        print(f"Model loaded from {filepath}.")
+        return model
