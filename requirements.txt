@@ -6,3 +6,4 @@ statsmodels
 pytest
 scikit-learn
 xgboost
+joblib
