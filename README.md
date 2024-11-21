@@ -37,7 +37,7 @@ The repository is organized as follows:
 2. **Exploratory Data Analysis (EDA)**: Detailed visualizations to understand data distributions and relationships.
 3. **Hypothesis Testing**: Validating statistical assumptions related to the dataset.
 4. **Predictive Modeling**: Building regression models to predict insurance charges.
-
+5. **Dashboard**: Dashboard for overview, visualizations, and prediction.
 
 ## Requirements
 
@@ -65,5 +65,13 @@ pip install -r requirements.txt
    ```
 
 3. Run the Jupyter notebooks for analysis.
+
+4. To run the streamlit dashboard:
+   - Navigate to the dashboard directory
+
+   ```bash
+   cd streamlit
+   streamlit run dashboard.py
+   ```
 
 
